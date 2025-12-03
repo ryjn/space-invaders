@@ -1,6 +1,7 @@
 # Space Invaders in C++
 ## What is GLFW and OpenGL?
 GLFS is a library for creating windows and handling input in C++. It is responsible for handling the windows where graphics will be drawn, as well as handling the keyboard and mouse inputs. However, it does not draw the graphics itself.  
+
 OpenGL is a graphics API that tells the GPU how to draw things into the window. It is responsible for rendering context, but cannot create the window or handle input.
 
 ## Setting up GLFW

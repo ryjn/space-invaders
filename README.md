@@ -19,9 +19,9 @@ For this project, GLEW will be used for the loading library:
 ```
 
 > [!NOTE]
-> Needs to be included before GLFW.
-> Can also define `GLFW_INCLUDE_NONE` before the GLFW header to explicitly disable inclusion of development environment header.
-> Allows including the headers in any order.
+> Needs to be included before GLFW.  
+> Can also define `GLFW_INCLUDE_NONE` before the GLFW header to explicitly disable inclusion of development environment header.  
+> Allows including the headers in any order.  
 
 ### Initializing and Terminating
 To use GLFW functions, the library must be initialized.

@@ -73,3 +73,39 @@ if (!window) {
     // Window or context creation failed
 }
 ```
+
+### Making OpenGL Context Current
+To use the OpenGL API, must have a current OpenGL context:
+```cpp
+glfwMakeContextCurrent(window);
+```
+This tells GLFW to make subsequent OpenGL calls apply to the current context.
+
+### Initialize GLEW
+After making the context current, we initialize GLEW:
+```cpp
+GLenum err = glewInit();
+if (err != GLEW_OK) {
+  fprintf(stderr, "Error initializing GLEW.\n");
+  glfwTerminate();
+  return -1;
+}
+```
+
+### Game Loop
+As of the code right now, a window will be created, but the program would immediately exit. We would essentially see nothing.  
+
+To have the window remain open, we need to create a game loop. During this loop is where input is processed, the game is updated, and is redrawn.
+```cpp
+glClearColor(1.0, 0.0, 0.0, 1.0);
+while (!glfwWindowShouldClose(window)) {
+  glClear(GL_COLOR_BUFFER_BIT);
+  glfwSwapBuffers(window);
+  glfwPollEvents();
+}
+```
+A buffer refers to a portion of RAM used by the computer to hold a temporary image.  
+OpenGL employs a double buffering scheme, where 
+  1. Front buffer is used for displaying an image
+  2. Back buffer is used for drawing  
+Buffers are swapped at each iteration - `glfwSwapBuffers`.

@@ -34,3 +34,42 @@ Once done using GLFW, it must be terminated:
 ```cpp
 glfwTerminate();
 ```
+
+### Error Callback
+Most events are reported through callbacks that are called by GLFW with arguments describing the event.  
+
+The reports can be received using an error callback:
+```cpp
+void error_callback(int error, const char* description) {
+  fprintf(stderr, "Error: %s\n", description);
+}
+```
+The `error_callback` function must have the structure above.  
+
+To set the callback function:
+```cpp
+glfwSetErrorCallback(error_callback);
+```
+
+### Creating a Window
+The window can be created using a call to the `glfwCreateWindow` function:
+```cpp
+GLFWwindow* window = glfwCreateWindow(640, 480, "Space Invaders", NULL, NULL);
+if (!window) {
+  glfwTerminate();
+  return -1;
+}
+```
+The code above creates a `640x480` window in windowed mode with an OpenGL context.  
+
+By default, the OpenGL context GLFW creates may have any version. A minimum OpenGL version can be required by setting the `GLFW_CONTEXT_VERSION_MAJOR` and `GLFW_CONTEXT_VERSION_MINOR` hints before creating the window.  
+Additionally, can set the OpenGL profile by setting the `GLFW_OPENGL_PROFILE` hint.
+```cpp
+glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+GLFWwindow* window = glfwCreateWindow(640, 480, "Space Invaders", NULL, NULL);
+if (!window) {
+    // Window or context creation failed
+}
+```
